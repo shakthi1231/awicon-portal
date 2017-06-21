@@ -1,0 +1,5 @@
+table, th, td {
+    border: 1px solid lightblue;
+    border-collapse: collapse;
+    width: "50%";
+}

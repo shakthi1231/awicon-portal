@@ -1,0 +1,41 @@
+<html>
+<br/><br/>
+<label for="name">Enter Template Name</label>
+<br/><br/>
+<input type="text" [(ngModel)]="templateName" placeholder="Enter Template Name">
+
+<br/><br/><br/>
+<div> Choose Template File </div> <br/>
+<input type="file" (change)="fileChange($event)" placeholder="Choose Template" accept=".pdf,.doc,.docx.xlsx">
+
+<br/><br/><br/>
+<div>Please Select a Table</div>
+
+<div *ngIf="tableNames && tableNames.length > 0">
+  <select [(ngModel)]="selectedTableName" (ngModelChange)="tableNameChange($event)"> // value is an object
+            <option *ngFor="let tableName of tableNames" [ngValue]="tableName">{{tableName}}</option>
+         </select>
+</div>
+<br/><br/><br/>
+<table *ngIf = "colNames.length > 0" >
+  <tr>
+    <th>Column Name</th>
+    <th>  <input type = "submit" id="submit"  value = "Add Row" (click)="addRow()"  /></th> 
+  </tr>
+    <tr *ngFor="let row of rows">
+      <td>
+        <select [(ngModel)]="row.name"> // value is an object
+            <option *ngFor="let col of colNames" [ngValue]="col">{{col}}</option>
+         </select>
+     </td>
+    </tr>
+</table>
+
+<br/><br/><br/>
+<div> Enter Starting Row(number) in Excel </div> <br/>
+<input type = "text"  [(ngModel)]="startRow" placeholder="Starting Row">
+
+<br/><br/><br/>
+<input type = "submit" value="Create Report" (click)= "createReport()">
+
+ </html>
